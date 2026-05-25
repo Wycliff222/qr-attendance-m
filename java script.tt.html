@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+import axios from "axios";
+import QrReader from "react-qr-reader";
+import schoolImage from "./school.png"; // Add school image in src folder
+
+function App() {
+  const [qrCode, setQrCode] = useState("");
+  const [scanResult, setScanResult] = useState("");
+
+  const createSession = async () => {
+    const res = await axios.post("https://your-backend-url/create-session", { sessionName: "Math Class" });
+    setQrCode(res.data.qrCode);
+  };
+
+  const handleScan = async (data) => {
+    if (data) {
+      setScanResult(data);
+      const sessionId = data.split(":")[1];
+      await axios.post("https://your-backend-url/mark-attendance", { studentId: 1, sessionId });
+      alert("Attendance marked!");
+    }
+  };
+
+  return (
+    <div style={{ textAlign: "center" }}>
+      <img src={schoolImage} alt="School" style={{ width: "200px" }} />
+      <h1>QR Attendance Management System</h1>
+      <button onClick={createSession}>Create Session</button>
+      {qrCode && <img src={qrCode} alt="QR Code" />}
+      <h2>Scan QR to Mark Attendance</h2>
+      <QrReader delay={300} onError={console.error} onScan={handleScan} style={{ width: "300px" }} />
+    </div>
+  );
+}
+
+export default App;
