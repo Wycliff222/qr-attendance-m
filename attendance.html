@@ -1,0 +1,71 @@
+<htmDOCTYPEl>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Attendance Management System</title>
+  <!-- Ensure style.css is in the same folder or /public -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header>
+    <!-- Place school-logo.png inside /public or same folder -->
+    <img src="./school-logo.png" alt="School Logo" class="logo">
+    <h1>QR Attendance Management System</h1>
+  </header>
+
+  <!-- Login Section -->
+  <section id="login-section">
+    <div class="login-container">
+      <h2>Login / Register</h2>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="loginBtn">Login</button>
+      <button id="registerBtn">Register</button>
+      <p><a href="#">Forgot Password?</a></p>
+    </div>
+  </section>
+
+  <!-- Student Portal -->
+  <section id="student-portal" class="portal hidden">
+    <h2>Student Portal</h2>
+    <div class="attendance-summary">
+      <p>Current Term Attendance: <span id="termAttendance">85%</span></p>
+      <p>Last Term Attendance: <span id="lastTerm">78%</span></p>
+    </div>
+    <div class="session-scan">
+      <h3>Session in Progress</h3>
+      <button id="scanBtn">Scan QR Code</button>
+    </div>
+  </section>
+
+  <!-- Trainee Portal -->
+  <section id="trainee-portal" class="portal hidden">
+    <h2>Trainee Portal</h2>
+    <div class="session-create">
+      <input type="text" id="className" placeholder="Class Name" required>
+      <input type="text" id="subjectName" placeholder="Subject" required>
+      <button id="generateQRBtn">Generate QR Code</button>
+      <div id="qrDisplay"></div>
+    </div>
+  </section>
+
+  <!-- Admin Portal -->
+  <section id="admin-portal" class="portal hidden">
+    <h2>Administrator Portal</h2>
+    <div class="admin-actions">
+      <button id="generateCodeBtn">Generate Trainee Code</button>
+      <div id="codeDisplay"></div>
+      <h3>Approve Student Registrations</h3>
+      <ul id="studentList"></ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Your Institution | Secure & Operational</p>
+  </footer>
+
+  <!-- Ensure script.js exists in same folder or /public -->
+  <script src="./script.js" defer></script>
+</body>
+</html>
